@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 using Serilog.Events;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,6 +54,14 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast");
 
 app.MapGet("/exception", () => { throw new NotImplementedException(); });
+
+
+app.MapGet("/log-warning", ([FromServices] ILogger<Program> logger) =>
+{
+    logger.LogWarning("Logging warning");
+
+    return Results.Ok();
+});
 
 app.Run();
 
