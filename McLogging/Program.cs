@@ -51,6 +51,8 @@ app.MapGet("/weatherforecast", () =>
 })
 .WithName("GetWeatherForecast");
 
+app.MapGet("/exception", () => { throw new NotImplementedException(); });
+
 app.Run();
 
 record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
