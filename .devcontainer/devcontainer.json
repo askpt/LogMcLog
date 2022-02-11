@@ -25,9 +25,6 @@
     "paolodellepiane.fantomas-fmt"
   ],
 
-  // Use 'forwardPorts' to make a list of ports inside the container available locally.
-  // "forwardPorts": [5000, 5001],
-
   // [Optional] To reuse of your local HTTPS dev cert:
   //
   // 1. Export it locally using this command:
@@ -50,8 +47,11 @@
   // postCreateCommand.sh parameters: $1=SA password, $2=dacpac path, $3=sql script(s) path
 "remoteUser": "vscode",
 "portsAttributes": {
-	"5341": {
-		"label": "Seq"
-	}
+  "5341": {
+    "label": "Seq"
+  },
+  "7036": {
+    "label": "HTTPS"
+  }
 }
 }
