@@ -25,6 +25,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Add serilog request logging
+app.UseSerilogRequestLogging();
+
 app.UseHttpsRedirection();
 
 var summaries = new[]
