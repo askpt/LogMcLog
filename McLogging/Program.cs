@@ -63,6 +63,18 @@ app.MapGet("/log-warning", ([FromServices] ILogger<Program> logger) =>
     return Results.Ok();
 });
 
+app.MapGet("/log-scoped", ([FromServices] ILogger<Program> logger) =>
+{
+    using (logger.BeginScope(new Dictionary<string, object> { { "FeatureFlag", "PR-123" } }))
+    {
+        logger.LogInformation("Logging scope - Scoped");
+    }
+
+    logger.LogWarning("Logging scope - Not scoped");
+
+    return Results.Ok();
+});
+
 app.Run();
 
 record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
