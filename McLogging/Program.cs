@@ -75,6 +75,18 @@ app.MapGet("/log-scoped", ([FromServices] ILogger<Program> logger) =>
     return Results.Ok();
 });
 
+app.MapGet("/log-exception", ([FromServices] ILogger<Program> logger) =>
+{
+    try
+    {
+        throw new SystemException();
+    }
+    catch (Exception e)
+    {
+        logger.LogError(e, "Log exception");
+    }
+});
+
 app.Run();
 
 record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
