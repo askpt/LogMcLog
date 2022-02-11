@@ -11,6 +11,8 @@ Log.Logger = new LoggerConfiguration()
             .Enrich.FromLogContext()
             .CreateLogger();
 
+builder.WebHost.UseSerilog();
+
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
